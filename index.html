@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Appliance List</title>
+  </head>
+  <body>
+    <h1>Appliance List</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Appliance Name</th>
+          <th>Wattage</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="applianceList"></tbody>
+    </table>
+    <div class="flex">
+      <button type="button" onclick="runModal()">Add Appliance</button>
+      <div class="modal" id="theModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+          <label for="applianceName">Name:</label>
+          <input type="text" id="applianceName" />
+          <label for="applianceWattage">Wattage:</label>
+          <input type="number" id="applianceWattage" />
+          <button type="button" onclick="addAppliance()">Add</button>
+
+        </div>
+      </div>
+      <button type="button" onclick="runModals()">Upload CSV</button>
+      <div class="modal" id="theModals">
+        <div class="modal-content">
+            <span class="close" id="close" onclick="closeModal()">&times;</span>
+          <label for="csvFile">Upload CSV file:</label>
+          <input type="file" id="csvFile" accept=".csv" />
+          <button type="button" onclick="uploadCsv()">Upload</button>
+        </div>
+      </div>
+      <div>
+        <button type="button" onclick="removeAllAppliances()">
+          Remove All Appliances
+        </button>
+      </div>
+    </div>
+    <div class="result_container">
+      <div id="results">
+        <p>Total average watt-hours per day: <span id="totalWattage"></span></p>
+      </div>
+      <div class="btn-container">
+        <button type="button" onclick="addTotalWattage()">Get Total</button>
+      </div>
+    </div>
+
+    <script src="style.js"></script>
+  </body>
+</html>
