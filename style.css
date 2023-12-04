@@ -38,6 +38,7 @@ button {
 #totalWattage {
   border: 1px solid #054515;
   padding: 10px;
+  display: block;
 }
 
 .modal {
