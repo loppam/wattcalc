@@ -9,33 +9,44 @@
   </head>
   <body>
     <h1>Appliance List</h1>
-    <table>
-      <thead>
-        <tr>
-          <th>Appliance Name</th>
-          <th>Wattage</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody id="applianceList"></tbody>
-    </table>
+    <div class="auto">
+      <table>
+        <thead>
+          <tr>
+            <th>Appliance Name</th>
+            <th>Wattage</th>
+            <th>Minutes on per hour</th>
+            <th>Hours on per day</th>
+            <th>Days on per week</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="applianceList"></tbody>
+      </table>
+    </div>
+    <div id="applianceInputs"></div>
     <div class="flex">
       <button type="button" onclick="runModal()">Add Appliance</button>
       <div class="modal" id="theModal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
+          <span class="close" onclick="closeModal()">&times;</span>
           <label for="applianceName">Name:</label>
-          <input type="text" id="applianceName" />
+          <input type="text" value="" id="applianceName" />
           <label for="applianceWattage">Wattage:</label>
           <input type="number" id="applianceWattage" />
+          <label for="applianceWattage">Minutes on per hour</label>
+          <input type="number" id="mph" />
+          <label for="applianceWattage">Hours on per day</label>
+          <input type="number" id="hpd" />
+          <label for="applianceWattage">Days on per week</label>
+          <input type="number" id="dpw" />
           <button type="button" onclick="addAppliance()">Add</button>
-
         </div>
       </div>
       <button type="button" onclick="runModals()">Upload CSV</button>
       <div class="modal" id="theModals">
         <div class="modal-content">
-            <span class="close" id="close" onclick="closeModal()">&times;</span>
+          <span class="close" id="close" onclick="closeModal()">&times;</span>
           <label for="csvFile">Upload CSV file:</label>
           <input type="file" id="csvFile" accept=".csv" />
           <button type="button" onclick="uploadCsv()">Upload</button>
@@ -54,6 +65,661 @@
       <div class="btn-container">
         <button type="button" onclick="addTotalWattage()">Get Total</button>
       </div>
+    </div>
+
+    <div class="table-container">
+      <table class="left">
+        <thead>
+          <tr>
+            <th>Appliance</th>
+            <th>Watts</th>
+            <th>Add</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td id="gadgetName">Clock radio</td>
+            <td>10</td>
+            <td>
+              <button type="button" onclick="addGadget(10,'Clock Radio' )">
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td id="gadgetName">Coffee maker</td>
+            <td>1050</td>
+            <td>
+              <button type="button" onclick="addGadget(105, 'Coffee Maker')">
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td id="gadgetName">Clothes washer</td>
+            <td>425</td>
+            <td>
+              <button type="button" onclick="addGadget(425, 'Clothes washer')">
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Electric clothes dryer</td>
+            <td>3400</td>
+            <td>
+              <button
+                type="button"
+                onclick="addGadget(3400, 'Electric clothes dryer')"
+              >
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Natural gas clothes dryer</td>
+            <td>300</td>
+            <td>
+              <button
+                type="button"
+                onclick="addGadget(300, 'Natural gas clothes dryer')"
+              >
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Dishwasher</td>
+            <td>1800</td>
+            <td>
+              <button type="button" onclick="addGadget(1800, 'Dishwasher')">
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Dehumidifier</td>
+            <td>785</td>
+            <td>
+              <button type="button" onclick="addGadget(785, 'Dehumidifier')">
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Electric blanket</td>
+            <td>80</td>
+            <td>
+              <button type="button" onclick="addGadget(80, 'Electric blanket')">
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Ceiling fan</td>
+            <td>120</td>
+            <td>
+              <button type="button" onclick="addGadget(120, 'Ceiling fan')">
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Window fan</td>
+            <td>150</td>
+            <td>
+              <button type="button" onclick="addGadget(150, 'Window fan')">
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>House furnace blower fan</td>
+            <td>900</td>
+            <td>
+              <button
+                type="button"
+                onclick="addGadget(900, 'House furnace blower fan')"
+              >
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>RV furnace blower fan</td>
+            <td>100</td>
+            <td>
+              <button
+                type="button"
+                onclick="addGadget(100, 'RV furnace blower fan')"
+              >
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Hair dryer</td>
+            <td>1540</td>
+            <td>
+              <button type="button" onclick="addGadget(1540, 'Hair dryer')">
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Portable heater</td>
+            <td>1250</td>
+            <td>
+              <button
+                type="button"
+                onclick="addGadget(1250, 'Portable heater')"
+              >
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Clothes iron</td>
+            <td>1400</td>
+            <td>
+              <button type="button" onclick="addGadget(1400, 'Clothes iron')">
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Microwave oven</td>
+            <td>1000</td>
+            <td>
+              <button type="button" onclick="addGadget(1000, 'Microwave oven')">
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Personal computer</td>
+            <td>250</td>
+            <td>
+              <button
+                type="button"
+                onclick="addGadget(250, 'Personal computer')"
+              >
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Computer monitor</td>
+            <td>150</td>
+            <td>
+              <button
+                type="button"
+                onclick="addGadget(150, 'Computer monitor')"
+              >
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Laptop computer</td>
+            <td>50</td>
+            <td>
+              <button type="button" onclick="addGadget(50, 'Laptop computer')">
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Home stereo</td>
+            <td>100</td>
+            <td>
+              <button type="button" onclick="addGadget(100, 'Home stereo')">
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Refrigerator (18 cubic ft.)</td>
+            <td>69</td>
+            <td>
+              <button
+                type="button"
+                onclick="addGadget(69, 'Refrigerator (18 cubic ft.)')"
+              >
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Freezer (17 cubic ft.)</td>
+            <td>79</td>
+            <td>
+              <button
+                type="button"
+                onclick="addGadget(79, 'Freezer (17 cubic ft.)')"
+              >
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Game console (XBOX 360)</td>
+            <td>135</td>
+            <td>
+              <button
+                type="button"
+                onclick="addGadget(135, 'Game console (XBOX 360)')"
+              >
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Hot plate</td>
+            <td>1200</td>
+            <td>
+              <button type="button" onclick="addGadget(1200, 'Hot plate')">
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Toaster nuan</td>
+            <td>1250</td>
+            <td>
+              <button type="button" onclick="addGadget(1250, 'Toaster nuan')">
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>20' LED flatscreen tv</td>
+            <td>25</td>
+            <td>
+              <button
+                type="button"
+                onclick="addGadget(25, `20' LED flatscreen tv`)"
+              >
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>30" LED flatscreen tv</td>
+            <td>35</td>
+            <td>
+              <button
+                type="button"
+                onclick="addGadget(35, `30' LED flatscreen tv`)"
+              >
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>40" LED flatscreen tv</td>
+            <td>45</td>
+            <td>
+              <button
+                type="button"
+                onclick="addGadget(45, `40' LED flatscreen tv`)"
+              >
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>40" Plasma flatscreen tv</td>
+            <td>60</td>
+            <td>
+              <button
+                type="button"
+                onclick="addGadget(60, `40' Plasma flatscreen tv`)"
+              >
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>50" LED flatscreen br</td>
+            <td>60</td>
+            <td>
+              <button
+                type="button"
+                onclick="addGadget(60, `50' LED flatscreen br`)"
+              >
+                +
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="right">
+        <thead>
+          <tr>
+            <th>Appliance</th>
+            <th>Watts</th>
+            <th>Add</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td id="gadgetName">Clock radio</td>
+            <td>10</td>
+            <td>
+              <button type="button" onclick="addGadget(10,'Clock Radio' )">
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td id="gadgetName">Coffee maker</td>
+            <td>1050</td>
+            <td>
+              <button type="button" onclick="addGadget(105, 'Coffee Maker')">
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td id="gadgetName">Clothes washer</td>
+            <td>425</td>
+            <td>
+              <button type="button" onclick="addGadget(425, 'Clothes washer')">
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Electric clothes dryer</td>
+            <td>3400</td>
+            <td>
+              <button
+                type="button"
+                onclick="addGadget(3400, 'Electric clothes dryer')"
+              >
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Natural gas clothes dryer</td>
+            <td>300</td>
+            <td>
+              <button
+                type="button"
+                onclick="addGadget(300, 'Natural gas clothes dryer')"
+              >
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Dishwasher</td>
+            <td>1800</td>
+            <td>
+              <button type="button" onclick="addGadget(1800, 'Dishwasher')">
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Dehumidifier</td>
+            <td>785</td>
+            <td>
+              <button type="button" onclick="addGadget(785, 'Dehumidifier')">
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Electric blanket</td>
+            <td>80</td>
+            <td>
+              <button type="button" onclick="addGadget(80, 'Electric blanket')">
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Ceiling fan</td>
+            <td>120</td>
+            <td>
+              <button type="button" onclick="addGadget(120, 'Ceiling fan')">
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Window fan</td>
+            <td>150</td>
+            <td>
+              <button type="button" onclick="addGadget(150, 'Window fan')">
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>House furnace blower fan</td>
+            <td>900</td>
+            <td>
+              <button
+                type="button"
+                onclick="addGadget(900, 'House furnace blower fan')"
+              >
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>RV furnace blower fan</td>
+            <td>100</td>
+            <td>
+              <button
+                type="button"
+                onclick="addGadget(100, 'RV furnace blower fan')"
+              >
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Hair dryer</td>
+            <td>1540</td>
+            <td>
+              <button type="button" onclick="addGadget(1540, 'Hair dryer')">
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Portable heater</td>
+            <td>1250</td>
+            <td>
+              <button
+                type="button"
+                onclick="addGadget(1250, 'Portable heater')"
+              >
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Clothes iron</td>
+            <td>1400</td>
+            <td>
+              <button type="button" onclick="addGadget(1400, 'Clothes iron')">
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Microwave oven</td>
+            <td>1000</td>
+            <td>
+              <button type="button" onclick="addGadget(1000, 'Microwave oven')">
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Personal computer</td>
+            <td>250</td>
+            <td>
+              <button
+                type="button"
+                onclick="addGadget(250, 'Personal computer')"
+              >
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Computer monitor</td>
+            <td>150</td>
+            <td>
+              <button
+                type="button"
+                onclick="addGadget(150, 'Computer monitor')"
+              >
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Laptop computer</td>
+            <td>50</td>
+            <td>
+              <button type="button" onclick="addGadget(50, 'Laptop computer')">
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Home stereo</td>
+            <td>100</td>
+            <td>
+              <button type="button" onclick="addGadget(100, 'Home stereo')">
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Refrigerator (18 cubic ft.)</td>
+            <td>69</td>
+            <td>
+              <button
+                type="button"
+                onclick="addGadget(69, 'Refrigerator (18 cubic ft.)')"
+              >
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Freezer (17 cubic ft.)</td>
+            <td>79</td>
+            <td>
+              <button
+                type="button"
+                onclick="addGadget(79, 'Freezer (17 cubic ft.)')"
+              >
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Game console (XBOX 360)</td>
+            <td>135</td>
+            <td>
+              <button
+                type="button"
+                onclick="addGadget(135, 'Game console (XBOX 360)')"
+              >
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Hot plate</td>
+            <td>1200</td>
+            <td>
+              <button type="button" onclick="addGadget(1200, 'Hot plate')">
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Toaster nuan</td>
+            <td>1250</td>
+            <td>
+              <button type="button" onclick="addGadget(1250, 'Toaster nuan')">
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>20' LED flatscreen tv</td>
+            <td>25</td>
+            <td>
+              <button
+                type="button"
+                onclick="addGadget(25, `20' LED flatscreen tv`)"
+              >
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>30" LED flatscreen tv</td>
+            <td>35</td>
+            <td>
+              <button
+                type="button"
+                onclick="addGadget(35, `30' LED flatscreen tv`)"
+              >
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>40" LED flatscreen tv</td>
+            <td>45</td>
+            <td>
+              <button
+                type="button"
+                onclick="addGadget(45, `40' LED flatscreen tv`)"
+              >
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>40" Plasma flatscreen tv</td>
+            <td>60</td>
+            <td>
+              <button
+                type="button"
+                onclick="addGadget(60, `40' Plasma flatscreen tv`)"
+              >
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>50" LED flatscreen br</td>
+            <td>60</td>
+            <td>
+              <button
+                type="button"
+                onclick="addGadget(60, `50' LED flatscreen br`)"
+              >
+                +
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <script src="style.js"></script>

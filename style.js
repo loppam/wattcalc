@@ -1,6 +1,7 @@
 const applianceList = document.querySelector("#applianceList");
 const totalWattage = document.querySelector("#totalWattage");
 const modal = document.getElementById("theModal");
+const premodal = document.getElementById("preModal");
 const modals = document.getElementById("theModals");
 const span = document.getElementById("close");
 
@@ -9,10 +10,16 @@ let wattageSum = 0;
 function addAppliance() {
   const name = document.querySelector("#applianceName").value;
   const wattage = parseInt(document.querySelector("#applianceWattage").value);
+  const mph = document.querySelector("#mph").value;
+  const hpd = parseInt(document.querySelector("#hpd").value);
+  const dpw = parseInt(document.querySelector("#dpw").value);
   const row = document.createElement("tr");
   row.innerHTML = `
             <td>${name}</td>
             <td>${wattage} W</td>
+            <td>${mph}</td>
+            <td>${hpd}</td>
+            <td>${dpw}</td>
             <td><button type="button" onclick="addToTotalWattage(${wattage})">Add</button></td>
         `;
   applianceList.appendChild(row);
@@ -40,21 +47,33 @@ let appliances = [];
 function addAppliance() {
   const name = document.querySelector("#applianceName").value;
   const wattage = parseInt(document.querySelector("#applianceWattage").value);
+  const mph = parseInt(document.querySelector("#mph").value);
+  const hpd = parseInt(document.querySelector("#hpd").value);
+  const dpw = parseInt(document.querySelector("#dpw").value);
   const row = document.createElement("tr");
   row.innerHTML = `
                 <td>${name}</td>
                 <td>${wattage} W</td>
+                <td>${mph}</td>
+                <td>${hpd}</td>
+                <td>${dpw}</td>
                 <td><button type="button" class="singrem" onclick="addToTotalWattage(${wattage})">Add</button></td>
             `;
   applianceList.appendChild(row);
   modal.style.display = "none";
 
-  const appliance = { name, wattage };
+  const appliance = { name, wattage, mph, hpd, dpw };
   appliances.push(appliance);
   saveAppliances();
   displayAppliances();
 }
 
+function addGadget(wattage, gadgetName) {
+  modal.style.display = "block";
+  document.querySelector("#applianceName").value = gadgetName;
+  document.querySelector("#applianceWattage").value = wattage;
+
+}
 function uploadCsv() {
   const fileInput = document.querySelector("#csvFile");
   const file = fileInput.files[0];
@@ -115,6 +134,9 @@ function displayAppliances() {
     row.innerHTML = `
                     <td>${appliances[i].name}</td>
                     <td>${appliances[i].wattage} W</td>
+                    <td>${appliances[i].mph} </td>
+                    <td>${appliances[i].hpd} </td>
+                    <td>${appliances[i].dpw} </td>
                     <td><button type="button" onclick="removeAppliance(${i})">X</button></td>
                 `;
     applianceList.appendChild(row);
