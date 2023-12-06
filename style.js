@@ -1,4 +1,5 @@
 const applianceList = document.querySelector("#applianceList");
+const applianceCSV = document.querySelector("#applianceCSV");
 const totalWattage = document.querySelector("#totalWattage");
 const modal = document.getElementById("theModal");
 const premodal = document.getElementById("preModal");
@@ -72,27 +73,6 @@ function addGadget(wattage, gadgetName) {
   modal.style.display = "block";
   document.querySelector("#applianceName").value = gadgetName;
   document.querySelector("#applianceWattage").value = wattage;
-
-}
-function uploadCsv() {
-  const fileInput = document.querySelector("#csvFile");
-  const file = fileInput.files[0];
-  const reader = new FileReader();
-  reader.onload = function (event) {
-    const csv = event.target.result;
-    const lines = csv.split("\n");
-    for (let i = 0; i < lines.length; i++) {
-      const fields = lines[i].split(",");
-      const name = fields[0];
-      const wattage = parseInt(fields[1]);
-      const appliance = { name, wattage };
-      appliances.push(appliance);
-    }
-    saveAppliances();
-    displayAppliances();
-  };
-  reader.readAsText(file);
-  modals.style.display = "none";
 }
 
 function removeAllAppliances() {
@@ -140,6 +120,46 @@ function displayAppliances() {
                     <td><button type="button" onclick="removeAppliance(${i})">X</button></td>
                 `;
     applianceList.appendChild(row);
+  }
+}
+async function addGadgets(names, wattage) {
+  modal.style.display = "block";
+
+  document.querySelector("#applianceName").value = names;
+  document.querySelector("#applianceWattage").value = wattage;
+}
+let appliancess = [];
+function uploadCsv() {
+  const fileInput = document.querySelector("#csvFile");
+  const file = fileInput.files[0];
+  const reader = new FileReader();
+  reader.onload = function (event) {
+    const csv = event.target.result;
+    const lines = csv.split("\n");
+    for (let i = 0; i < lines.length; i++) {
+      const fields = lines[i].split(",");
+      const names = fields[0];
+      const wattage = parseInt(fields[1]);
+      const appliance = { names, wattage };
+      appliancess.push(appliance);
+    }
+    saveAppliances();
+    displayCSV();
+  };
+  reader.readAsText(file);
+  modals.style.display = "none";
+}
+
+function displayCSV() {
+  applianceCSV.innerHTML = "";
+  for (let i = 0; i < appliancess.length; i++) {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+                    <td>${appliancess[i].names}</td>
+                    <td>${appliancess[i].wattage} W</td>
+                    <td><button type="button" onclick="addGadgets( '${appliancess[i].names}', ${appliancess[i].wattage})">+</button></td>
+                `;
+    applianceCSV.appendChild(row);
   }
 }
 
